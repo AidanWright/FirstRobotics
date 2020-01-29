@@ -9,13 +9,16 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
+import frc.robot.RobotContainer;
 import frc.robot.subsystems.Drivetrain;
 
 
 
 public class DriveArcade extends CommandBase {
-
-   
+  /**
+   * Creates a new DriveArcade.
+   * 
+   */
   private void requires(Drivetrain m_drivetrain) {
   }
   public DriveArcade() {
@@ -58,4 +61,3 @@ public class DriveArcade extends CommandBase {
  // }
 
 }
-

@@ -18,27 +18,11 @@ import edu.wpi.first.wpilibj.XboxController;
  */
 public class RobotContainer {
 
-  public static final int DRIVETRAIN_LEFT_FRONT_PWMVictorSPX = 0;
+  public static final int DRIVETRAIN_LEFT_SIDE_PWMVictorSPX = 0;
 
-  public static final int DRIVETRAIN_LEFT_BACK_PWMVictorSPX = 2;
-
-  public static final int DRIVETRAIN_RIGHT_FRONT_PWMVictorSPX = 3;
-
-  public static final int DRIVETRAIN_RIGHT_BACK_PWMVictorSPX = 1;
-
-  //public static final int JUGMACHINE_TOP_PWMVictorSPX = 4;
-
-  //public static final int JUGMACHINE_BOTTOM_PWMVictorSPX = 5;
-
-  public static final int CLIMBPISTON_PITCH_SOLENOID_DEPLOY = 6;
-
-  public static final int CLIMBPISTON_PITCH_SOLENOID_RETRACT = 7;
+  public static final int DRIVETRAIN_RIGHT_SIDE_PWMVictorSPX = 1;
 
   public static final int OI_DRIVER_CONTROLLER = 0;
-  
-
-
-
 
   //public static final double DRIVER_CONTROLLER_MOVE_AXIS = 1;
 
