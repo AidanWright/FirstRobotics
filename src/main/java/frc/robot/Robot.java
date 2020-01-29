@@ -7,12 +7,16 @@
 
 package frc.robot;
 
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.subsystems.Drivetrain;
-import frc.robot.subsystems.ClimbPiston;
+//import frc.robot.subsystems.Shooter;
+//import frc.robot.subsystems.ClimbPiston;
+//import edu.wpi.cscore.VideoSink;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -21,17 +25,20 @@ import frc.robot.subsystems.ClimbPiston;
  * project.
  */
 public class Robot extends TimedRobot {
-  public static final Drivetrain m_drivertrain = null;
-//public static final String m_stick = null;
+  
+public static final String m_stick = null;
 private Command m_autonomousCommand;
-  public static Drivetrain m_drivetrain = null;
+ public static Drivetrain m_drivetrain = null;
   public static OI m_oi;
 public static Object m_driverController;
 public static final DoubleSolenoid pitchSolenoid = null;
-public static final ClimbPiston m_ClimbPiston = null;
+//public static final ClimbPiston m_ClimbPiston = null;
+public static UsbCamera cameraChassisCamera;
+//public static VideoSink server;
+//public static final Shooter m_Shooter = null;
 
 
-  //private RobotContainer m_robotContainer;
+ // private RobotContainer m_robotContainer;
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -41,9 +48,11 @@ public static final ClimbPiston m_ClimbPiston = null;
   public void robotInit() {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
-   // m_robotContainer = new RobotContainer();
-    m_drivetrain = new Drivetrain();
+  //  m_robotContainer = new RobotContainer();
+   Drivetrain m_drivetrain = new Drivetrain();
     m_oi = new OI();
+    cameraChassisCamera = CameraServer.getInstance().startAutomaticCapture(0);
+
   }
 
   /**
@@ -75,15 +84,15 @@ public static final ClimbPiston m_ClimbPiston = null;
 
   /**
    * This autonomous runs the autonomous command selected by your {@link RobotContainer} class.
-   */
+   **/
  // @Override
- // public void autonomousInit() {
+// public void autonomousInit() {
    // m_autonomousCommand = m_robotContainer.getAutonomousCommand();
 
     // schedule the autonomous command (example)
    // if (m_autonomousCommand != null) {
-    //  m_autonomousCommand.schedule();
-   // }
+     // m_autonomousCommand.schedule();
+  // }
  // }
 
   /**
@@ -112,6 +121,10 @@ public static final ClimbPiston m_ClimbPiston = null;
     double moveSpeed = -Robot.m_oi.driverController.getY();
     double rotateSpeed = Robot.m_oi.driverController.getX();
     Robot.m_drivetrain.arcadeDrive(moveSpeed, rotateSpeed);
+    //Robot.m_ClimbPiston.pitchUp();
+    //Robot.m_ClimbPiston.pitchDown();
+
+    
   }
 
   @Override

@@ -14,10 +14,8 @@ import frc.robot.subsystems.Drivetrain;
 
 
 public class DriveArcade extends CommandBase {
-  /**
-   * Creates a new DriveArcade.
-   * 
-   */
+
+   
   private void requires(Drivetrain m_drivetrain) {
   }
   public DriveArcade() {
@@ -60,3 +58,4 @@ public class DriveArcade extends CommandBase {
  // }
 
 }
+
