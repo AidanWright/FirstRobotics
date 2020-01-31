@@ -1,3 +1,7 @@
 # FirstRobotics
 ## TO DO:
-- refactor ( limit memory usage )
+- Pneumatics
+- Ball thrower
+- Ball un-jammer
+- Image Proccessing
+
