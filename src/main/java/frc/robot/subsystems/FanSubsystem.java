@@ -7,14 +7,15 @@
 
 package frc.robot.subsystems;
 
+// Import our needed classes
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj.PWMVictorSPX;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.RobotContainer;
 import frc.robot.commands.FanControl;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
-import frc.robot.Robot;
 
 public class FanSubsystem extends SubsystemBase {
 
@@ -33,42 +34,27 @@ public class FanSubsystem extends SubsystemBase {
 
   }
 
-  public void fanDrive() {
-		// Calls the triggers and uses values to drive motors if their input is greater
-		// than or equal to 5%
-		if (Robot.m_oi.YButton.get() == true) {
-			fanDriveCW();
-    } else if (Robot.m_oi.AButton.get() == true) {
+  public void fanDrive(Button bCW, Button bCCW) {
+    if (bCW.get() == true) {
+	  	fanDriveCW();
+    } else if (bCCW.get() == true) {
       fanDriveCCW();
     } else
             fanDriveStop();
   }
+
   public void fanDriveCW() {
 		// Drives the fan down
-
-		// if (Timer.getMatchTime() > 25) {
-		fanDrive.tankDrive(RobotContainer.fanCWSpeed * 1, RobotContainer.fanCWSpeed * -1);// Polarities are opposite because
-                                                                                      // of accident in wiring,change
-														// for future robots!!!
-		// }
-		// else if (Timer.getMatchTime() <= 25)
-		// fanDrive.tankDrive(trigger * -1, 0);
+		fanDrive.tankDrive(RobotContainer.fanCWSpeed * 1, RobotContainer.fanCWSpeed * -1);
   }
 
   public void fanDriveCCW() {
 		// Drives the fan down
-
-		// if (Timer.getMatchTime() > 25) {
-		fanDrive.tankDrive(RobotContainer.fanCWSpeed * -1, RobotContainer.fanCWSpeed * 1);// Polarities are opposite because
-                                                                                      // of accident in wiring,change
-														// for future robots!!!
-		// }
-		// else if (Timer.getMatchTime() <= 25)
-		// fanDrive.tankDrive(trigger * -1, 0);
+		fanDrive.tankDrive(RobotContainer.fanCWSpeed * -1, RobotContainer.fanCWSpeed * 1);
   }
   
   public void fanDriveStop() {
-		//values to stop the fan
+		// Values to stop the fan
 		fanDrive.tankDrive(0, 0);
 	}
   @Override

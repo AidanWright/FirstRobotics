@@ -7,12 +7,14 @@
 
 package frc.robot.commands;
 
+// Import our needed classes
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
+import frc.robot.RobotContainer;
 
 public class RollerDrive extends CommandBase {
   /**
-   * Creates a new rollerIntakeDrive.
+   * Creates a new RollerDrive.
    */
   public RollerDrive() {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -27,11 +29,7 @@ public class RollerDrive extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (Robot.m_oi.XButton.get() ==  true) {
-        Robot.rollerSubsystem.rollerDriveDown();
-    } else if (Robot.m_oi.BButton.get() == true) {
-        Robot.rollerSubsystem.rollerDriveUp();
-    }
+    Robot.rollerSubsystem.rollerDrive(RobotContainer.rollerButtonDown, RobotContainer.rollerButtonUp);
   }
 
   // Called once the command ends or is interrupted.

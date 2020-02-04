@@ -7,10 +7,12 @@
 
 package frc.robot.subsystems;
 
+// Import our needed classes
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotContainer;
-import frc.robot.commands.DriveArcade;
+import frc.robot.commands.WheelDrive;
 import edu.wpi.first.wpilibj.PWMVictorSPX;
+import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 
@@ -21,32 +23,36 @@ public class Drivetrain extends SubsystemBase {
    */
 
 
-DifferentialDrive differentialDrive = null;
+DifferentialDrive differentialDrive;
+SpeedController leftFrontPWMVictorSPX, rightFrontPWMVictorSPX, leftBackPWMVictorSPX, rightBackPWMVictorSPX;
+SpeedControllerGroup leftMotors, rightMotors;
 
   public Drivetrain() {
     // Creates new PWM Speed controllers
-    PWMVictorSPX leftFrontPWMVictorSPX = new PWMVictorSPX(RobotContainer.DRIVETRAIN_LEFT_FRONT_PWMVictorSPX);
-    PWMVictorSPX rightFrontPWMVictorSPX = new PWMVictorSPX(RobotContainer.DRIVETRAIN_RIGHT_FRONT_PWMVictorSPX);
-    PWMVictorSPX leftBackPWMVictorSPX = new PWMVictorSPX(RobotContainer.DRIVETRAIN_LEFT_BACK_PWMVictorSPX);
-    PWMVictorSPX rightBackPWMVictorSPX = new PWMVictorSPX(RobotContainer.DRIVETRAIN_RIGHT_BACK_PWMVictorSPX);
+    leftFrontPWMVictorSPX = new PWMVictorSPX(RobotContainer.DRIVETRAIN_LEFT_FRONT_PWMVictorSPX);
+    rightFrontPWMVictorSPX = new PWMVictorSPX(RobotContainer.DRIVETRAIN_RIGHT_FRONT_PWMVictorSPX);
+    leftBackPWMVictorSPX = new PWMVictorSPX(RobotContainer.DRIVETRAIN_LEFT_BACK_PWMVictorSPX);
+    rightBackPWMVictorSPX = new PWMVictorSPX(RobotContainer.DRIVETRAIN_RIGHT_BACK_PWMVictorSPX);
     
     // Creates new Speed control groups
-    SpeedControllerGroup leftMotors = new SpeedControllerGroup(leftFrontPWMVictorSPX, leftBackPWMVictorSPX);
-    SpeedControllerGroup rightMotors = new SpeedControllerGroup(rightFrontPWMVictorSPX, rightBackPWMVictorSPX);
+    leftMotors = new SpeedControllerGroup(leftFrontPWMVictorSPX, leftBackPWMVictorSPX);
+    rightMotors = new SpeedControllerGroup(rightFrontPWMVictorSPX, rightBackPWMVictorSPX);
 
     differentialDrive = new DifferentialDrive(leftMotors, rightMotors);
   }
 
-  public void arcadeDrive(double moveSpeed, double rotateSpeed){
-    differentialDrive.arcadeDrive(moveSpeed, rotateSpeed);
-  }
-
-  public void initDefaultCommandBase() {
-    setDefaultCommand(new DriveArcade());
+  public void drive(double moveSpeed, double rotateSpeed){
+    if (moveSpeed < -RobotContainer.flightstickDeadZone || // check if past deadzone
+        moveSpeed > RobotContainer.flightstickDeadZone ||
+        rotateSpeed > RobotContainer.flightstickDeadZone ||
+        rotateSpeed < -RobotContainer.flightstickDeadZone) {
+      differentialDrive.arcadeDrive(moveSpeed, rotateSpeed);
+    }
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    setDefaultCommand(new WheelDrive());
   }
 }

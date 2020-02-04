@@ -7,8 +7,10 @@
 
 package frc.robot;
 
+// Import our needed classes
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj2.command.button.Button;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -18,33 +20,42 @@ import edu.wpi.first.wpilibj.XboxController;
  */
 public class RobotContainer {
 
-  // Wheel Ports
+  /* Controller Config */
+  // Joysticks
+  public static final int OI_DRIVER_CONTROLLER = 0; // FLightstick on port 0
+  public static final int OI_XBOX_CONTROLLER = 1; // Xbox controller on port 1
+  public static final double controllerDeadZone = 0.15; // Controller's deadzone (def 0.05)
+  public static final double flightstickDeadZone = 0.15; // Controller's deadzone (def 0.05)
+  // Roller Buttons
+  public static final Button rollerButtonDown = Robot.oi.XButton;
+  public static final Button rollerButtonUp = Robot.oi.XButton;
+  // Fan Buttons
+  public static final Button fanButtonCW = Robot.oi.XButton;
+  public static final Button fanButtonCCW = Robot.oi.XButton;
 
+  /* PWM Port Configs */
+  // Wheel Ports
   public static final int DRIVETRAIN_LEFT_FRONT_PWMVictorSPX = 0;
   public static final int DRIVETRAIN_RIGHT_FRONT_PWMVictorSPX = 1;
   public static final int DRIVETRAIN_LEFT_BACK_PWMVictorSPX = 2;
   public static final int DRIVETRAIN_RIGHT_BACK_PWMVictorSPX = 3;
-
   // Motor Ports
   public static final int rollerPWM = 4;
   public static final int cannonDrivePWM = 6;
   public static final int fanController1PWM = 7;
   public static final int fanController2PWM = 8;
   public static final int fanController3PWM = 9;
-  
   // Dummy ports
   public static final int dummyDriveCannon = 11;
   public static final int dummyDriveRoller = 12;
 
-  // Controller Ports
-  public static final int OI_DRIVER_CONTROLLER = 0;
-  public static final int OI_XBOX_CONTROLLER = 1;
-
+  /* Speed Configs */
   // Speeds
   public static final double cannonDriveSpeed = 0.5;
   public static final double fanCWSpeed = 0.5;
   public static final double fanCCWSpeed = 0.5;
   public static final double rollerSpeed = 0.5;
+
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.

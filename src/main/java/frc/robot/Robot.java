@@ -7,6 +7,7 @@
 
 package frc.robot;
 
+// Import our needed classes
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
@@ -25,14 +26,20 @@ import frc.robot.subsystems.RollerSubsystem;
   
   // Declare our variables
   private Command m_autonomousCommand;
-  public static Drivetrain m_drivetrain = null;
-  
-  public static OI m_oi;
+  public static OI oi;
+  public static Drivetrain drivetrain;
+  public static CannonRotateSub cannonRotateSub;
+  public static FanSubsystem fanSubsystem;
+  public static RollerSubsystem rollerSubsystem;
 
   // Initialize Subsystem
+  /*
+  public static Drivetrain drivetrain = new Drivetrain();
   public static CannonRotateSub cannonRotateSub = new CannonRotateSub();
   public static FanSubsystem fanSubsystem = new FanSubsystem();
   public static RollerSubsystem rollerSubsystem = new RollerSubsystem();
+  */
+
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
@@ -41,10 +48,11 @@ import frc.robot.subsystems.RollerSubsystem;
   public void robotInit() {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
-   // m_robotContainer = new RobotContainer();
-    m_drivetrain = new Drivetrain();
-    m_oi = new OI();
-
+    oi = new OI();
+    drivetrain = new Drivetrain();
+    cannonRotateSub = new CannonRotateSub();
+    fanSubsystem = new FanSubsystem();
+    rollerSubsystem = new RollerSubsystem();
   }
 
   /**
@@ -77,15 +85,15 @@ import frc.robot.subsystems.RollerSubsystem;
   /**
    * This autonomous runs the autonomous command selected by your {@link RobotContainer} class.
    */
- // @Override
- // public void autonomousInit() {
-   // m_autonomousCommand = m_robotContainer.getAutonomousCommand();
+  @Override
+  public void autonomousInit() {
+    //m_autonomousCommand = m_robotContainer.getAutonomousCommand();
 
     // schedule the autonomous command (example)
-   // if (m_autonomousCommand != null) {
-    //  m_autonomousCommand.schedule();
-   // }
- // }
+    if (m_autonomousCommand != null) {
+      m_autonomousCommand.schedule();
+    }
+  }
 
   /**
    * This function is called periodically during autonomous.
@@ -110,9 +118,6 @@ import frc.robot.subsystems.RollerSubsystem;
    */
   @Override
   public void teleopPeriodic() {
-    double moveSpeed = -Robot.m_oi.driverController.getY();
-    double rotateSpeed = Robot.m_oi.driverController.getX();
-    Robot.m_drivetrain.arcadeDrive(moveSpeed, rotateSpeed);
   }
 
   @Override

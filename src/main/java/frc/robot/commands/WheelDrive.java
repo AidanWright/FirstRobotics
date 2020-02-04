@@ -7,56 +7,39 @@
 
 package frc.robot.commands;
 
+// Import our needed classes
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
-import frc.robot.subsystems.Drivetrain;
 
-
-
-public class DriveArcade extends CommandBase {
+public class WheelDrive extends CommandBase {
   /**
-   * Creates a new DriveArcade.
+   * Creates a new WheelDrive.
    * 
    */
-  private void requires(Drivetrain m_drivetrain) {
-  }
-  public DriveArcade() {
-   
+  public WheelDrive() {
     // Use addRequirements() here to declare subsystem dependencies.
-    requires(Robot.m_drivetrain);
+    addRequirements(Robot.drivetrain);
   }
-
-
+  
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
   }
-
+  
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double moveSpeed = -Robot.m_oi.driverController.getY();
-    double rotateSpeed = Robot.m_oi.driverController.getX();
-
-    Robot.m_drivetrain.arcadeDrive(moveSpeed, rotateSpeed);
+    Robot.drivetrain.drive(-Robot.oi.driverController.getY(), Robot.oi.driverController.getX());
   }
-
+  
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    Robot.m_drivetrain.arcadeDrive(0, 0);
-    //end(interrupted);
   }
 
   // Returns true when the command should end.
   @Override
- public boolean isFinished() {
+  public boolean isFinished() {
     return false;
- }
-
-  //public void interrupted() {
-   // end(false);
-    
- // }
-
+  }
 }

@@ -7,8 +7,10 @@
 
 package frc.robot.commands;
 
+// Import our needed classes
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
+import frc.robot.RobotContainer;
 
 public class FanControl extends CommandBase {
   /**
@@ -27,11 +29,7 @@ public class FanControl extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (Robot.m_oi.AButton.get() ==  true) {
-        Robot.fanSubsystem.fanDriveCW();
-    } else if (Robot.m_oi.YButton.get() == true) {
-        Robot.fanSubsystem.fanDriveCCW();
-    }
+      Robot.fanSubsystem.fanDrive(RobotContainer.fanButtonCW, RobotContainer.fanButtonCCW);
   }
 
   // Called once the command ends or is interrupted.

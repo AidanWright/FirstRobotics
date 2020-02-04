@@ -7,6 +7,7 @@
 
 package frc.robot.commands;
 
+// Import our needed classes
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
@@ -14,7 +15,6 @@ public class DriveCannon extends CommandBase {
   /**
    * Creates a new DriveCannon.
    */
-  
    public DriveCannon() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Robot.cannonRotateSub);
@@ -28,7 +28,7 @@ public class DriveCannon extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.cannonRotateSub.cannonDrive(-1 * Robot.m_oi.Xbox.getY());
+    Robot.cannonRotateSub.cannonDrive(-1 * Robot.oi.Xbox.getY());
   }
 
   // Called once the command ends or is interrupted.
