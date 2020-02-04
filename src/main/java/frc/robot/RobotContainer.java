@@ -18,24 +18,33 @@ import edu.wpi.first.wpilibj.XboxController;
  */
 public class RobotContainer {
 
-  public static final int DRIVETRAIN_LEFT_SIDE_PWMVictorSPX = 0;
+  // Wheel Ports
 
-  public static final int DRIVETRAIN_RIGHT_SIDE_PWMVictorSPX = 1;
+  public static final int DRIVETRAIN_LEFT_FRONT_PWMVictorSPX = 0;
+  public static final int DRIVETRAIN_RIGHT_FRONT_PWMVictorSPX = 1;
+  public static final int DRIVETRAIN_LEFT_BACK_PWMVictorSPX = 2;
+  public static final int DRIVETRAIN_RIGHT_BACK_PWMVictorSPX = 3;
 
-  public static final int OI_DRIVER_CONTROLLER = 0;
-
-  //public static final double DRIVER_CONTROLLER_MOVE_AXIS = 1;
-
-  //public static final double DRIVER_CONTROLLER_ROTATE_AXIS = -1;
-
+  // Motor Ports
+  public static final int rollerPWM = 4;
+  public static final int cannonDrivePWM = 6;
+  public static final int fanController1PWM = 7;
+  public static final int fanController2PWM = 8;
+  public static final int fanController3PWM = 9;
   
+  // Dummy ports
+  public static final int dummyDriveCannon = 11;
+  public static final int dummyDriveRoller = 12;
 
-// The robot's subsystems and commands are defined here...
-  //private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
+  // Controller Ports
+  public static final int OI_DRIVER_CONTROLLER = 0;
+  public static final int OI_XBOX_CONTROLLER = 1;
 
-  //private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
-
-
+  // Speeds
+  public static final double cannonDriveSpeed = 0.5;
+  public static final double fanCWSpeed = 0.5;
+  public static final double fanCCWSpeed = 0.5;
+  public static final double rollerSpeed = 0.5;
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.

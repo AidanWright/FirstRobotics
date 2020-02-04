@@ -10,8 +10,10 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.subsystems.CannonRotateSub;
 import frc.robot.subsystems.Drivetrain;
-import frc.robot.commands.DriveArcade;
+import frc.robot.subsystems.FanSubsystem;
+import frc.robot.subsystems.RollerSubsystem;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -19,16 +21,18 @@ import frc.robot.commands.DriveArcade;
  * the package after creating this project, you must also update the build.gradle file in the
  * project.
  */
-public class Robot extends TimedRobot {
-  public static final Drivetrain m_drivertrain = null;
-//public static final String m_stick = null;
-private Command m_autonomousCommand;
+  public class Robot extends TimedRobot {
+  
+  // Declare our variables
+  private Command m_autonomousCommand;
   public static Drivetrain m_drivetrain = null;
+  
   public static OI m_oi;
-public static Object m_driverController;
 
-  //private RobotContainer m_robotContainer;
-
+  // Initialize Subsystem
+  public static CannonRotateSub cannonRotateSub = new CannonRotateSub();
+  public static FanSubsystem fanSubsystem = new FanSubsystem();
+  public static RollerSubsystem rollerSubsystem = new RollerSubsystem();
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
@@ -40,6 +44,7 @@ public static Object m_driverController;
    // m_robotContainer = new RobotContainer();
     m_drivetrain = new Drivetrain();
     m_oi = new OI();
+
   }
 
   /**

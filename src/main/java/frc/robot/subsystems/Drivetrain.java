@@ -12,6 +12,7 @@ import frc.robot.RobotContainer;
 import frc.robot.commands.DriveArcade;
 import edu.wpi.first.wpilibj.PWMVictorSPX;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.hal.PWMJNI;
 
 
@@ -20,17 +21,21 @@ public class Drivetrain extends SubsystemBase {
    * Creates a new Drivetrain.
    */
 
-PWMVictorSPX leftSidePWMVictorSPX = null;
-PWMVictorSPX rightSidePWMVictorSPX = null;
 
 DifferentialDrive differentialDrive = null;
 
   public Drivetrain() {
-    leftSidePWMVictorSPX = new PWMVictorSPX(RobotContainer.DRIVETRAIN_LEFT_SIDE_PWMVictorSPX);
-    rightSidePWMVictorSPX = new PWMVictorSPX(RobotContainer.DRIVETRAIN_RIGHT_SIDE_PWMVictorSPX);
-
+    // Creates new PWM Speed controllers
+    PWMVictorSPX leftFrontPWMVictorSPX = new PWMVictorSPX(RobotContainer.DRIVETRAIN_LEFT_FRONT_PWMVictorSPX);
+    PWMVictorSPX rightFrontPWMVictorSPX = new PWMVictorSPX(RobotContainer.DRIVETRAIN_RIGHT_FRONT_PWMVictorSPX);
+    PWMVictorSPX leftBackPWMVictorSPX = new PWMVictorSPX(RobotContainer.DRIVETRAIN_LEFT_BACK_PWMVictorSPX);
+    PWMVictorSPX rightBackPWMVictorSPX = new PWMVictorSPX(RobotContainer.DRIVETRAIN_RIGHT_BACK_PWMVictorSPX);
     
-    differentialDrive = new DifferentialDrive(leftSidePWMVictorSPX, rightSidePWMVictorSPX);
+    // Creates new Speed control groups
+    SpeedControllerGroup leftMotors = new SpeedControllerGroup(leftFrontPWMVictorSPX, leftBackPWMVictorSPX);
+    SpeedControllerGroup rightMotors = new SpeedControllerGroup(rightFrontPWMVictorSPX, rightBackPWMVictorSPX);
+
+    differentialDrive = new DifferentialDrive(leftMotors, rightMotors);
   }
 
   public void arcadeDrive(double moveSpeed, double rotateSpeed){
@@ -38,8 +43,7 @@ DifferentialDrive differentialDrive = null;
   }
 
   public void initDefaultCommandBase() {
-setDefaultCommand(new DriveArcade());
-
+    setDefaultCommand(new DriveArcade());
   }
 
   @Override
