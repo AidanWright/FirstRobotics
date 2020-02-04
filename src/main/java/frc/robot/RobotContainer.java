@@ -25,13 +25,14 @@ public class RobotContainer {
   public static final int OI_DRIVER_CONTROLLER = 0; // FLightstick on port 0
   public static final int OI_XBOX_CONTROLLER = 1; // Xbox controller on port 1
   public static final double controllerDeadZone = 0.15; // Controller's deadzone (def 0.05)
+  public static final double controllerTriggerDeadZone = 0.15; // Controller's deadzone (def 0.05)
   public static final double flightstickDeadZone = 0.15; // Controller's deadzone (def 0.05)
   // Roller Buttons
-  public static final Button rollerButtonDown = Robot.oi.XButton;
-  public static final Button rollerButtonUp = Robot.oi.XButton;
+  public static final Button rollerButtonDown = Robot.oi.leftBumper;
+  public static final Button rollerButtonUp = Robot.oi.rightBumper;
   // Fan Buttons
-  public static final Button fanButtonCW = Robot.oi.XButton;
-  public static final Button fanButtonCCW = Robot.oi.XButton;
+  public static final int fanButtonCW = Robot.oi.rightTrigger;
+  public static final int fanButtonCCW = Robot.oi.leftTrigger;
 
   /* PWM Port Configs */
   // Wheel Ports
