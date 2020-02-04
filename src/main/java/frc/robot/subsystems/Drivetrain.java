@@ -13,7 +13,6 @@ import frc.robot.commands.DriveArcade;
 import edu.wpi.first.wpilibj.PWMVictorSPX;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
-import edu.wpi.first.hal.PWMJNI;
 
 
 public class Drivetrain extends SubsystemBase {
