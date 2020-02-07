@@ -34,10 +34,10 @@ public class FanSubsystem extends SubsystemBase {
 
   }
 
-  public void fanDrive(double bCW, double bCCW) {
-    if (bCW > RobotContainer.controllerTriggerDeadZone) {
+  public void fanDrive(Button bCW, Button bCCW) {
+    if (bCW.get() == true) {
 	  	fanDriveCW();
-    } else if (bCCW > RobotContainer.controllerTriggerDeadZone) {
+    } else if (bCCW.get() == true) {
       fanDriveCCW();
     } else
             fanDriveStop();

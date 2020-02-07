@@ -7,29 +7,32 @@
 
 package frc.robot.commands;
 
-// Import our needed classes
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 import frc.robot.RobotContainer;
 
-public class FanControl extends CommandBase {
+public class FindColor extends CommandBase {
   /**
-   * Creates a new FanControl.
+   * Creates a new FindColor.
    */
-  public FanControl() {
+  public FindColor() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(Robot.fanSubsystem);
+    addRequirements(Robot.findColorSub);
+
   }
 
   // Called when the command is initially scheduled.
-  @Override
+
   public void initialize() {
+
   }
 
   // Called every time the scheduler runs while the command is scheduled.
-  @Override
+ 
   public void execute() {
-      Robot.fanSubsystem.fanDrive(RobotContainer.fanButtonCW, RobotContainer.fanButtonCCW);
+
+    Robot.findColorSub.findColor(RobotContainer.spinWheelSpeed);
+    
   }
 
   // Called once the command ends or is interrupted.

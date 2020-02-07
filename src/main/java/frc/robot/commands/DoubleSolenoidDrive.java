@@ -1,5 +1,5 @@
 /*----------------------------------------------------------------------------*/
-/* Copyright (c) 2019 FIRST. All Rights Reserved.                             */
+/* Copyright (c) 2018-2019 FIRST. All Rights Reserved.                        */
 /* Open Source Software - may be modified and shared by FRC teams. The code   */
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
@@ -12,24 +12,40 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 import frc.robot.RobotContainer;
 
-public class FanControl extends CommandBase {
+public class DoubleSolenoidDrive extends CommandBase {
   /**
-   * Creates a new FanControl.
+   * Creates a new RollerDrive.
    */
-  public FanControl() {
+  static boolean isToggled = false;
+  static boolean patIsAllowed = false;
+
+  public DoubleSolenoidDrive() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(Robot.fanSubsystem);
+    addRequirements(Robot.doubleSolenoidSub);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-      Robot.fanSubsystem.fanDrive(RobotContainer.fanButtonCW, RobotContainer.fanButtonCCW);
+    if (Robot.oi.driverController.getRawAxis(RobotContainer.patSupidSaftey) <= -0.9) {
+      patIsAllowed = true;
+    } else {
+      patIsAllowed = false;
+    }
+    if (patIsAllowed == true) {
+      if (RobotContainer.doubleSolenoidButtonExtend.get() == true) {
+        Robot.doubleSolenoidSub.extend();
+    } else if (RobotContainer.doubleSolenoidButtonRetract.get() == true) {
+        Robot.doubleSolenoidSub.retract();
+    } else
+        Robot.doubleSolenoidSub.keep();
+    }
   }
 
   // Called once the command ends or is interrupted.

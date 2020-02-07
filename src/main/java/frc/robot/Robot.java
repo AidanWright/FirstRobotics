@@ -12,9 +12,13 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.subsystems.CannonRotateSub;
+import frc.robot.subsystems.DoubleSolenoidSub;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.FanSubsystem;
+import frc.robot.subsystems.JugsMachineSub;
 import frc.robot.subsystems.RollerSubsystem;
+import frc.robot.subsystems.SingleSolenoidSub;
+import frc.robot.subsystems.SpinWheelSub;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -31,6 +35,11 @@ import frc.robot.subsystems.RollerSubsystem;
   public static CannonRotateSub cannonRotateSub;
   public static FanSubsystem fanSubsystem;
   public static RollerSubsystem rollerSubsystem;
+  public static DoubleSolenoidSub doubleSolenoidSub;
+  public static SpinWheelSub findColorSub;
+  public static SingleSolenoidSub singleSolenoidSub;
+  public static JugsMachineSub jugsMachineSub;
+  
 
   // Initialize Subsystem
   /*
@@ -53,6 +62,11 @@ import frc.robot.subsystems.RollerSubsystem;
     cannonRotateSub = new CannonRotateSub();
     fanSubsystem = new FanSubsystem();
     rollerSubsystem = new RollerSubsystem();
+    doubleSolenoidSub = new DoubleSolenoidSub();
+    findColorSub = new SpinWheelSub();
+    singleSolenoidSub = new SingleSolenoidSub();
+    jugsMachineSub = new JugsMachineSub();
+   
   }
 
   /**
