@@ -11,7 +11,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-
+import edu.wpi.first.wpilibj.XboxController;
 /**
 * Add your docs here.
  */
@@ -19,6 +19,7 @@ public class OI {
     // Joysticks
     public Joystick driverController = new Joystick(RobotContainer.OI_DRIVER_CONTROLLER);
     public Joystick Xbox = new Joystick(RobotContainer.OI_XBOX_CONTROLLER);
+    public XboxController xboxController = new XboxController(RobotContainer.OI_XBOX_CONTROLLER);
 
     // Buttons
     public Button AButton = new JoystickButton(Xbox, 1); //Green A button
@@ -27,6 +28,8 @@ public class OI {
     public Button BButton = new JoystickButton(Xbox, 2); //Red B button
     public Button leftBumper = new JoystickButton(Xbox, 5);//Left bumper
     public Button rightBumper = new JoystickButton(Xbox, 6);//Right bumper 
+    public final int rightTrigger = 2;
+    public final int leftTrigger = 3;
 
     Button D1 = new JoystickButton(driverController, 1);
     Button D2 = new JoystickButton(driverController, 2);
@@ -37,7 +40,7 @@ public class OI {
     
     // Axis
     public final int slider = 3;
-    public final int leftTrigger = 2;
+
 }
 
 

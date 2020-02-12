@@ -2,7 +2,6 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.PWMVictorSPX;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -23,12 +22,12 @@ public class JugsMachineSub extends SubsystemBase{
   }
 
 
-	public void JugsMachineDrive(Button jugsmachineforward, Button jugsmachinereverse) {
+	public void JugsMachineDrive(double jugsmachinereverse, double jugsmachineforward) {
 		// Calls the triggers and uses values to drive motors if their input is greater
 		// than or equal to 5%
-		if (RobotContainer.jugsMachineForward.get() == true) {
+		if (jugsmachineforward > RobotContainer.triggerDeadzone) {
 			jugsMachineForward();
-    	} else if (RobotContainer.jugsMachineReverse.get() == true) {
+    	} else if (jugsmachinereverse > RobotContainer.triggerDeadzone) {
 			jugsMachineReverse();
     	} else
 			jugsMachineStop();

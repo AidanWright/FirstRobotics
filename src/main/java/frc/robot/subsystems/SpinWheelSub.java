@@ -23,6 +23,7 @@ import com.revrobotics.ColorMatch;
 
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj2.command.button.Button;
 
 public class SpinWheelSub extends SubsystemBase {
 
@@ -58,12 +59,12 @@ public class SpinWheelSub extends SubsystemBase {
   }
 
 
-	public void findColor(double yInput) {
+	public void findColor(Button bDrive ) {
 
 
     Color detectedColor = colorSensor.getColor();
 
-    System.out.println(detectedColor);
+    //System.out.println(detectedColor);
 		String colorString;
 		ColorMatchResult match = colorMatcher.matchClosestColor(detectedColor);
   // double IR = colorSensor.getIR();
@@ -93,8 +94,8 @@ public class SpinWheelSub extends SubsystemBase {
     SmartDashboard.putNumber("Confidence",match.confidence);
     SmartDashboard.putString("Detected Color", colorString);
 
-		if (match.color != kRedTarget){
-		spinWheelDrive(yInput);
+		if (match.color != kRedTarget && bDrive.get() == true){
+		spinWheelDrive();
 		}
 		
 		// Calls the triggers and uses values to drive motors if their input is greater
@@ -107,7 +108,7 @@ public class SpinWheelSub extends SubsystemBase {
 			spinWheelStop();*/
 	}
 
-	public void spinWheelDrive(double yInput) {
+	public void spinWheelDrive() {
 		// Drives the spinWheel down
 
 		// if (Timer.getMatchTime() > 25) {
@@ -118,7 +119,7 @@ public class SpinWheelSub extends SubsystemBase {
 		// spinWheelMotor.tankDrive(trigger * -1, 0);
 	}
 
-	public void spinWheelDriveUp(double yInput) {
+	public void spinWheelDriveUp() {
 //drives spinWheel upward
 		spinWheelMotor.tankDrive(RobotContainer.spinWheelSpeed * -1, RobotContainer.spinWheelSpeed * 1);
 	}

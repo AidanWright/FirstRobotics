@@ -31,7 +31,7 @@ public class FindColor extends CommandBase {
  
   public void execute() {
 
-    Robot.findColorSub.findColor(RobotContainer.spinWheelSpeed);
+    Robot.findColorSub.findColor(RobotContainer.colorWheelDrive);
     
   }
 

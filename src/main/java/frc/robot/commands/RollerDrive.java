@@ -29,7 +29,7 @@ public class RollerDrive extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.rollerSubsystem.rollerDrive(RobotContainer.rollerButtonDown, RobotContainer.rollerButtonUp);
+    Robot.rollerSubsystem.rollerDrive(Robot.oi.xboxController.getRawAxis(RobotContainer.rollerButtonDown), Robot.oi.xboxController.getRawAxis(RobotContainer.rollerButtonUp));
   }
 
   // Called once the command ends or is interrupted.
