@@ -10,6 +10,7 @@ package frc.robot.subsystems;
 // Import our needed classes
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.SpeedController;
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.PWMVictorSPX;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.RobotContainer;
@@ -19,12 +20,14 @@ public class CannonRotateSub extends SubsystemBase {
 
   SpeedController cannonDrive, dummyDrive;
   DifferentialDrive cannonMotor;
+  AnalogInput Voltage;
 
   public CannonRotateSub() {
 
     cannonDrive = new PWMVictorSPX(RobotContainer.cannonDrivePWM);
     dummyDrive = new PWMVictorSPX(RobotContainer.dummyDriveCannon);
-    cannonMotor = new DifferentialDrive(cannonDrive, dummyDrive);
+	cannonMotor = new DifferentialDrive(cannonDrive, dummyDrive);
+	Voltage = new AnalogInput(RobotContainer.potentiometer);
 
   }
 
@@ -32,12 +35,12 @@ public class CannonRotateSub extends SubsystemBase {
 	public void cannonDrive(double yInput) {
 		// Calls the triggers and uses values to drive motors if their input surpasses deadzone floor
 		if (yInput >= RobotContainer.controllerDeadZone) {
-			cannonDriveDown();
-		} else if (yInput <= -RobotContainer.controllerDeadZone) {
 			cannonDriveUp();
+		} else if (yInput <= -RobotContainer.controllerDeadZone) {
+			cannonDriveDown();
 		} else
 			cannonStop();
-	}
+}
 
 	public void cannonDriveDown() {
 		// Drives cannon down
@@ -56,7 +59,16 @@ public class CannonRotateSub extends SubsystemBase {
 		cannonMotor.tankDrive(0, 0);
 	}
 
+	public boolean armAtAngle(double angle) {
+		if(getVoltage() >= (angle - 0.05) && (getVoltage() <= (angle + 0.05)))
+		return true;
+		else 
+		return false;
+	}
 
+	public double getVoltage() {
+		return Voltage.getAverageVoltage();
+	}
 
   @Override
   public void periodic() {

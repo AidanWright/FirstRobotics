@@ -3,6 +3,7 @@ package frc.robot.subsystems;
 
 // Import our needed classes
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.PWMVictorSPX;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -20,10 +21,10 @@ public class RollerSubsystem extends SubsystemBase{
     rollerMotor = new DifferentialDrive(rollerDrive, dummyDrive);
   }
 
-	public void rollerDrive(double bDwn, double bUp) {
-		if (bDwn > RobotContainer.triggerDeadzone) {
+	public void rollerDrive(Button bDwn, Button bUp) {
+		if (bDwn.get() == true) {
 			rollerDriveDown();
-    	} else if (bUp > RobotContainer.triggerDeadzone) {
+    	} else if (bUp.get() == true) {
 			rollerDriveUp();
     	} else
 			rollerStop();
@@ -31,12 +32,12 @@ public class RollerSubsystem extends SubsystemBase{
 
 	public void rollerDriveUp() {
 		// Drives the roller up
-		rollerMotor.tankDrive(RobotContainer.rollerSpeed * -1, RobotContainer.rollerSpeed * 1);
+		rollerMotor.tankDrive(RobotContainer.rollerSpeed * 1, RobotContainer.rollerSpeed * -1);
 	}
 
 	public void rollerDriveDown() {
 		// Drives the roller down
-		rollerMotor.tankDrive(RobotContainer.rollerSpeed * 1, RobotContainer.rollerSpeed * -1);
+		rollerMotor.tankDrive(RobotContainer.rollerSpeed * -1, RobotContainer.rollerSpeed * 1);
 	}
 
 	public void rollerStop() {

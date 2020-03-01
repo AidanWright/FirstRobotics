@@ -7,6 +7,7 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 // Import our needed classes
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
@@ -27,24 +28,33 @@ public class DoubleSolenoidDrive extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    
+
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    if (Robot.oi.driverController.getRawAxis(RobotContainer.patSupidSaftey) > -0.9) {
+      Robot.doubleSolenoidSub.off();
+    } 
     if (Robot.oi.driverController.getRawAxis(RobotContainer.patSupidSaftey) <= -0.9) {
       patIsAllowed = true;
     } else {
       patIsAllowed = false;
-    }
+  }
+  SmartDashboard.putBoolean("Saftey Double", patIsAllowed);
     if (patIsAllowed == true) {
-      if (RobotContainer.doubleSolenoidButtonExtend.get() == true) {
-        Robot.doubleSolenoidSub.extend();
-    } else if (RobotContainer.doubleSolenoidButtonRetract.get() == true) {
-        Robot.doubleSolenoidSub.retract();
+      if (RobotContainer.climbButtonExtend.get() == true) {
+        //Robot.doubleSolenoidSub.extendClimb();
+    } else if (RobotContainer.climbButtonRetract.get() == true) {
+        //Robot.doubleSolenoidSub.retractClimb();
+    } else if (RobotContainer.rollerButtonExtend.get() == true) {
+        Robot.doubleSolenoidSub.extendRoller();
+    } else if (RobotContainer.rollerButtonRetract.get() == true) {
+        Robot.doubleSolenoidSub.retractRoller();
     } else
-        Robot.doubleSolenoidSub.keep();
+        Robot.doubleSolenoidSub.off();
+        //Robot.doubleSolenoidSub.keepRoller();
     }
   }
 

@@ -29,8 +29,10 @@ public class FanControl extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-      Robot.fanSubsystem.fanDrive(Robot.oi.xboxController.getRawAxis(RobotContainer.fanButtonCCW), Robot.oi.xboxController.getRawAxis(RobotContainer.fanButtonCW));
+    Robot.fanSubsystem.fanDrive(RobotContainer.fanButtonCCW, Robot.oi.Xbox.getRawAxis(RobotContainer.fanButtonCW));
   }
+  
+  
 
   // Called once the command ends or is interrupted.
   @Override

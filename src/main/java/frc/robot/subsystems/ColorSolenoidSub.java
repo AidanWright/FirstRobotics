@@ -4,9 +4,10 @@
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
-/*
+
 package frc.robot.subsystems;
 
+// Import our needed classes
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.commands.ColorSolenoidDrive;
 import edu.wpi.first.wpilibj.Solenoid;
@@ -14,7 +15,7 @@ import edu.wpi.first.wpilibj.Solenoid;
 public class ColorSolenoidSub extends SubsystemBase {
 
 
-  static Solenoid pitchSolenoid5 = new Solenoid(3);
+  static Solenoid pitchSolenoid6 = new Solenoid(0);
  
 
   
@@ -22,15 +23,15 @@ public class ColorSolenoidSub extends SubsystemBase {
 
 
   public void extend() {
-    pitchSolenoid5.set(true);
+    pitchSolenoid6.set(true);
     val2 = true;
   }
   public void retract() {
-    pitchSolenoid5.set(false);
+    pitchSolenoid6.set(false);
     val2 = false;
   }
   public void keep() {
-      pitchSolenoid5.set(val2);
+      pitchSolenoid6.set(val2);
   }
 
   @Override
@@ -39,4 +40,3 @@ public class ColorSolenoidSub extends SubsystemBase {
     setDefaultCommand(new ColorSolenoidDrive());
   }
 }
-*/

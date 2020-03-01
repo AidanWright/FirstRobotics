@@ -11,10 +11,11 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DriverStation;
 // Import our needed classes
 import edu.wpi.first.wpilibj.TimedRobot;
+//import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.subsystems.CannonRotateSub;
-//import frc.robot.subsystems.ColorSolenoidSub;
+import frc.robot.subsystems.ColorSolenoidSub;
 import frc.robot.subsystems.DoubleSolenoidSub;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.FanSubsystem;
@@ -22,14 +23,16 @@ import frc.robot.subsystems.JugsMachineSub;
 import frc.robot.subsystems.RollerSubsystem;
 import frc.robot.subsystems.SingleSolenoidSub;
 import frc.robot.subsystems.SpinWheelSub;
+import io.github.pseudoresonance.pixy2api.Pixy2;
+import io.github.pseudoresonance.pixy2api.links.SPILink;
 
-import org.opencv.core.Mat;
-import org.opencv.core.Point;
-import org.opencv.core.Scalar;
-import org.opencv.imgproc.Imgproc;
+// import org.opencv.core.Mat;
+// import org.opencv.core.Point;
+// import org.opencv.core.Scalar;
+// import org.opencv.imgproc.Imgproc;
 
-import edu.wpi.cscore.CvSink;
-import edu.wpi.cscore.CvSource;
+// import edu.wpi.cscore.CvSink;
+// import edu.wpi.cscore.CvSource;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.cameraserver.CameraServer;
 
@@ -57,7 +60,8 @@ import edu.wpi.first.cameraserver.CameraServer;
   public static SpinWheelSub findColorSub;
   public static SingleSolenoidSub singleSolenoidSub;
   public static JugsMachineSub jugsMachineSub;
-  //public static ColorSolenoidSub colorSolenoidSub;
+  public static ColorSolenoidSub colorSolenoidSub;
+
   // Digital Inputs
   public static DigitalInput digIn9;
 	public static DigitalInput digIn8;
@@ -99,7 +103,7 @@ import edu.wpi.first.cameraserver.CameraServer;
     findColorSub = new SpinWheelSub();
     singleSolenoidSub = new SingleSolenoidSub();
     jugsMachineSub = new JugsMachineSub();
-    //colorSolenoidSub = new ColorSolenoidSub();
+    colorSolenoidSub = new ColorSolenoidSub();
   
     digIn9 = new DigitalInput(9);
 		digIn8 = new DigitalInput(8);
@@ -111,40 +115,15 @@ import edu.wpi.first.cameraserver.CameraServer;
       UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
 
       // Set the resolution
-      camera.setResolution(640, 480);
-      camera.setFPS(60);
-      // Get a CvSink. This will capture Mats from the camera
-      CvSink cvSink = CameraServer.getInstance().getVideo();
-      // Setup a CvSource. This will send images back to the Dashboard
-      CvSource outputStream
-          = CameraServer.getInstance().putVideo("Rectangle", 640, 480);
+      camera.setResolution(160, 120);
+      camera.setFPS(30);
 
-      // Mats are very memory expensive. Lets reuse this Mat.
-      Mat mat = new Mat();
-
-      // This cannot be 'true'. The program will never exit if it is. This
-      // lets the robot stop this thread when restarting robot code or
-      // deploying.
-      while (!Thread.interrupted()) {
-        // Tell the CvSink to grab a frame from the camera and put it
-        // in the source mat.  If there is an error notify the output.
-        if (cvSink.grabFrame(mat) == 0) {
-          // Send the output the error.
-          outputStream.notifyError(cvSink.getError());
-          // skip the rest of the current iteration
-          continue;
-        }
-        // Put a rectangle on the image
-        Imgproc.rectangle(mat, new Point(100, 100), new Point(400, 400),
-            new Scalar(255, 255, 255), 5);
-
-        
-        //String fps = Double.toString(camera.getActualFPS());
-        //System.out.println(fps);
-        Imgproc.putText(mat, "FPS: ", new Point(50, 50), 0, 1, new Scalar(255, 255, 255));
-        // Give the output stream a new image to display
-        outputStream.putFrame(mat);
-      }
+      // Pixy2
+      final Pixy2 pixy;
+      pixy = Pixy2.createInstance(new SPILink()); // Creates a new Pixy2 camera using SPILink
+      pixy.init(); // Initializes the camera and prepares to send/receive data
+      pixy.setLamp((byte) 1, (byte) 1); // Turns the LEDs on
+      pixy.setLED(200, 30, 255); // Sets the RGB LED to purple
     });
     m_visionThread.setDaemon(true);
     m_visionThread.start();
@@ -255,6 +234,7 @@ import edu.wpi.first.cameraserver.CameraServer;
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
+    singleSolenoidSub.keep();
   }
 
   /**
@@ -262,6 +242,8 @@ import edu.wpi.first.cameraserver.CameraServer;
    */
   @Override
   public void teleopPeriodic() {
+    //System.out.println(Robot.cannonRotateSub.getVoltage());
+     // SmartDashboard.putNumber("Pot Value", Robot.cannonRotateSub.getVoltage());
   }
 
   @Override

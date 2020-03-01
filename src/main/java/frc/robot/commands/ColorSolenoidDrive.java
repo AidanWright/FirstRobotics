@@ -4,18 +4,19 @@
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
-/*
+
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 // Import our needed classes
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 import frc.robot.RobotContainer;
 
 public class ColorSolenoidDrive extends CommandBase {
-  
+  /*
    * Creates a new RollerDrive.
-  
+   */
   static boolean isToggled = false;
   static boolean patIsAllowed = false;
 
@@ -27,7 +28,7 @@ public class ColorSolenoidDrive extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    
+
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -38,6 +39,7 @@ public class ColorSolenoidDrive extends CommandBase {
     } else {
       patIsAllowed = false;
     }
+    SmartDashboard.putBoolean("Saftey Color", patIsAllowed);
     if (patIsAllowed == true) {
       if (RobotContainer.colorSolenoidButtonExtend.get() == true) {
         Robot.colorSolenoidSub.extend();
@@ -59,4 +61,4 @@ public class ColorSolenoidDrive extends CommandBase {
   public boolean isFinished() {
     return false;
   }
-}*/
+}

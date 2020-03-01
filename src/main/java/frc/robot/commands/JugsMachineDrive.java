@@ -7,10 +7,10 @@
 
 package frc.robot.commands;
 
+// Import our needed classes
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 import frc.robot.RobotContainer;
-
 
 public class JugsMachineDrive extends CommandBase {
   /**
@@ -29,7 +29,8 @@ public class JugsMachineDrive extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.jugsMachineSub.JugsMachineDrive(Robot.oi.xboxController.getRawAxis(RobotContainer.jugsMachineReverse), Robot.oi.xboxController.getRawAxis(RobotContainer.jugsMachineForward));
+    Robot.jugsMachineSub.JugsMachineDrive(Robot.oi.Xbox.getRawAxis(RobotContainer.jugsMachineReverse),
+    Robot.oi.Xbox.getRawAxis(RobotContainer.jugsMachineForward));
   }
 
   // Called once the command ends or is interrupted.

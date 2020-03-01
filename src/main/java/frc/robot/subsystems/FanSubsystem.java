@@ -9,12 +9,13 @@ package frc.robot.subsystems;
 
 // Import our needed classes
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj.PWMVictorSPX;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import frc.robot.RobotContainer;
-import frc.robot.commands.FanControl;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import frc.robot.RobotContainer;
+import frc.robot.commands.FanControl;
 
 public class FanSubsystem extends SubsystemBase {
 
@@ -33,13 +34,14 @@ public class FanSubsystem extends SubsystemBase {
 
   }
 
-  public void fanDrive(double bCCW, double bCW) {
+  public void fanDrive(Button bCCW, double bCW) {
     if (bCW > RobotContainer.triggerDeadzone) {
 	  	fanDriveCW();
-    } else if (bCCW > RobotContainer.triggerDeadzone) {
+    } else if (bCCW.get() == true) {
       fanDriveCCW();
-    } else
+    } else {
             fanDriveStop();
+    }
   }
 
   public void fanDriveCW() {

@@ -20,16 +20,17 @@ public class WheelDrive extends CommandBase {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Robot.drivetrain);
   }
-  
+
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
   }
-  
+
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.drivetrain.drive(-Robot.oi.driverController.getY(), Robot.oi.driverController.getX());
+    Robot.drivetrain.drive(-Robot.oi.driverController.getY(), Robot.oi.driverController.getX(), Robot.oi.driverController.getZ());
+    
   }
   
   // Called once the command ends or is interrupted.
