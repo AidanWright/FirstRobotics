@@ -31,8 +31,6 @@ public class FanControl extends CommandBase {
   public void execute() {
     Robot.fanSubsystem.fanDrive(RobotContainer.fanButtonCCW, Robot.oi.Xbox.getRawAxis(RobotContainer.fanButtonCW));
   }
-  
-  
 
   // Called once the command ends or is interrupted.
   @Override

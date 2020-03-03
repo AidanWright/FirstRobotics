@@ -19,21 +19,15 @@ public class FindColor extends CommandBase {
   public FindColor() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Robot.findColorSub);
-
   }
 
   // Called when the command is initially scheduled.
-
   public void initialize() {
-
   }
 
   // Called every time the scheduler runs while the command is scheduled.
- 
   public void execute() {
-
     Robot.findColorSub.findColor(RobotContainer.colorWheelDrive);
-    
   }
 
   // Called once the command ends or is interrupted.

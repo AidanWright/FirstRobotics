@@ -13,14 +13,8 @@ import frc.robot.commands.ColorSolenoidDrive;
 import edu.wpi.first.wpilibj.Solenoid;
 
 public class ColorSolenoidSub extends SubsystemBase {
-
-
-  static Solenoid pitchSolenoid6 = new Solenoid(0);
- 
-
-  
+  static Solenoid pitchSolenoid6 = new Solenoid(0);  
   static boolean val2 = false;
-
 
   public void extend() {
     pitchSolenoid6.set(true);

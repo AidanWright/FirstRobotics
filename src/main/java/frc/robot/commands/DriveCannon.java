@@ -69,53 +69,36 @@ public class DriveCannon extends CommandBase {
     }
   }
 
-       //twentyFeetShot
-       if (RobotContainer.sevenTyroneFeetButton.get() == true){
-        if  (Robot.cannonRotateSub.getVoltage() > RobotContainer.sevenTyroneFeetShot){
-          Robot.cannonRotateSub.cannonDriveUp();
-        } else if(Robot.cannonRotateSub.getVoltage() < RobotContainer.sevenTyroneFeetShot){
-            Robot.cannonRotateSub.cannonDriveDown();
-        } else if ((RobotContainer.sevenTyroneFeetShot < Robot.cannonRotateSub.getVoltage())
-          && (Robot.cannonRotateSub.getVoltage() < RobotContainer.sevenTyroneFeetShot)){
+      //twentyFeetShot
+      if (RobotContainer.sevenTyroneFeetButton.get() == true){
+      if  (Robot.cannonRotateSub.getVoltage() > RobotContainer.sevenTyroneFeetShot){
+        Robot.cannonRotateSub.cannonDriveUp();
+      } else if(Robot.cannonRotateSub.getVoltage() < RobotContainer.sevenTyroneFeetShot){
+          Robot.cannonRotateSub.cannonDriveDown();
+      } else if ((RobotContainer.sevenTyroneFeetShot < Robot.cannonRotateSub.getVoltage())
+        && (Robot.cannonRotateSub.getVoltage() < RobotContainer.sevenTyroneFeetShot)){
+        Robot.cannonRotateSub.cannonStop();
+      } else {
           Robot.cannonRotateSub.cannonStop();
-        } else {
-            Robot.cannonRotateSub.cannonStop();
-        }
       }
+    }
 
-        //thirtyFeetShot
-        if (RobotContainer.ThirtyTreeButton.get() == true){
-          if  (Robot.cannonRotateSub.getVoltage() > RobotContainer.thirtyTreeFeetShot){
-            Robot.cannonRotateSub.cannonDriveUp();
-          } else if(Robot.cannonRotateSub.getVoltage() < RobotContainer.thirtyTreeFeetShot){
-              Robot.cannonRotateSub.cannonDriveDown();
-          } else if ((RobotContainer.thirtyTreeFeetShot < Robot.cannonRotateSub.getVoltage())
-            && (Robot.cannonRotateSub.getVoltage() < RobotContainer.thirtyTreeFeetShot)){
-            Robot.cannonRotateSub.cannonStop();
-          } else {
-              Robot.cannonRotateSub.cannonStop();
-          }
-        }     
-        /*
-        if (RobotContainer.ThirtyFeetButton.get() == true){
-          if  (Robot.cannonRotateSub.getVoltage() > RobotContainer.limitDown){
-            Robot.cannonRotateSub.cannonDriveUp();
-          } else if(Robot.cannonRotateSub.getVoltage() < RobotContainer.limitDown){
-              Robot.cannonRotateSub.cannonDriveDown();
-          } else if ((RobotContainer.thirtyFeetShot < Robot.cannonRotateSub.getVoltage())
-            && (Robot.cannonRotateSub.getVoltage() < RobotContainer.thirtyFeetShot)){
-            Robot.cannonRotateSub.cannonStop();
-          } else {
-              Robot.cannonRotateSub.cannonStop();
-          }
-        }
-        */
+    //thirtyFeetShot
+    if (RobotContainer.ThirtyTreeButton.get() == true){
+      if  (Robot.cannonRotateSub.getVoltage() > RobotContainer.thirtyTreeFeetShot){
+        Robot.cannonRotateSub.cannonDriveUp();
+      } else if(Robot.cannonRotateSub.getVoltage() < RobotContainer.thirtyTreeFeetShot){
+          Robot.cannonRotateSub.cannonDriveDown();
+      } else if ((RobotContainer.thirtyTreeFeetShot < Robot.cannonRotateSub.getVoltage())
+        && (Robot.cannonRotateSub.getVoltage() < RobotContainer.thirtyTreeFeetShot)){
+        Robot.cannonRotateSub.cannonStop();
+      } else {
+          Robot.cannonRotateSub.cannonStop();
+      }
+    }     
 
-
-  //System.out.println(Robot.cannonRotateSub.getVoltage());
-  SmartDashboard.putNumber("Pot Value", Robot.cannonRotateSub.getVoltage());
-
-}
+    SmartDashboard.putNumber("Pot Value", Robot.cannonRotateSub.getVoltage());
+  }
 
   // Called once the command ends or is interrupted.
   @Override

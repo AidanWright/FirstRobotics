@@ -17,7 +17,6 @@ public class SingleSolenoidSub extends SubsystemBase {
 
   static Solenoid pitchSolenoid4 = new Solenoid(3);
   static Solenoid pitchSolenoid5 = new Solenoid(4);
-  //static Solenoid pitchSolenoid5 = new Solenoid(5);
 
   static boolean val1 = false;
   static boolean val2 = true;

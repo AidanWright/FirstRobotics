@@ -15,29 +15,8 @@ import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 
 
 public class DoubleSolenoidSub extends SubsystemBase {
-
- // static DoubleSolenoid pitchSolenoid = new DoubleSolenoid(5, 6);
   static DoubleSolenoid pitchSolenoid2 = new DoubleSolenoid(1, 2);
-
-
-  
   static Value valRoller = DoubleSolenoid.Value.kOff;
- // static Value valClimb = DoubleSolenoid.Value.kOff;
-
-/*
-  public void extendClimb() {
-    pitchSolenoid.set(DoubleSolenoid.Value.kForward);
-    valClimb = DoubleSolenoid.Value.kForward;
-  }
-  public void retractClimb() {
-    pitchSolenoid.set(DoubleSolenoid.Value.kReverse);
-    valClimb = DoubleSolenoid.Value.kReverse;
-  }
-  public void keepClimb() {
-      pitchSolenoid.set(valClimb);
-      System.out.println("Climb " + valClimb);
-  }
-*/
 
   public void extendRoller() {
     pitchSolenoid2.set(DoubleSolenoid.Value.kForward);
@@ -52,7 +31,6 @@ public class DoubleSolenoidSub extends SubsystemBase {
       System.out.println("Roller " + valRoller);
   }
   public void off() {
-     // pitchSolenoid.set(DoubleSolenoid.Value.kOff);
       pitchSolenoid2.set(DoubleSolenoid.Value.kOff);
   }
 

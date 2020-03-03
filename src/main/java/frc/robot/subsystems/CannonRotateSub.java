@@ -23,12 +23,10 @@ public class CannonRotateSub extends SubsystemBase {
   AnalogInput Voltage;
 
   public CannonRotateSub() {
-
     cannonDrive = new PWMVictorSPX(RobotContainer.cannonDrivePWM);
     dummyDrive = new PWMVictorSPX(RobotContainer.dummyDriveCannon);
 	cannonMotor = new DifferentialDrive(cannonDrive, dummyDrive);
 	Voltage = new AnalogInput(RobotContainer.potentiometer);
-
   }
 
 

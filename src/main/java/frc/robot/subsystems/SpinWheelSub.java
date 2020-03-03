@@ -12,9 +12,6 @@ import com.revrobotics.ColorSensorV3;
 import com.revrobotics.ColorMatchResult;
 import com.revrobotics.ColorMatch;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-
-import java.util.concurrent.TimeUnit;
-
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -25,6 +22,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import frc.robot.RobotContainer;
 import frc.robot.commands.FindColor;
+import java.util.concurrent.TimeUnit;
 
 public class SpinWheelSub extends SubsystemBase {
 
@@ -45,17 +43,10 @@ public class SpinWheelSub extends SubsystemBase {
 	colorMatcher = new ColorMatch();
 	digIn0 = new DigitalInput(0);
   
-	/*if (digIn0.get() == true) { // Values for testing color wheel in shop.
-		kBlueTarget = ColorMatch.makeColor(0.0,0.0,0.4);
-		kGreenTarget = ColorMatch.makeColor(0.0,0.5,0.0);
-		kRedTarget = ColorMatch.makeColor(0.5,0.3,0.0);
-		kYellowTarget = ColorMatch.makeColor(0.3,0.4,0.0);
-	} else { // Values for color wheel. defualts to this.*/
-		kBlueTarget = ColorMatch.makeColor(0.0,0.0,0.4);
-		kGreenTarget = ColorMatch.makeColor(0.0,0.5,0.0);
-		kRedTarget = ColorMatch.makeColor(0.5,0.3,0.0);
-		kYellowTarget = ColorMatch.makeColor(0.3,0.4,0.0);
-	//}
+	kBlueTarget = ColorMatch.makeColor(0.0,0.0,0.4);
+	kGreenTarget = ColorMatch.makeColor(0.0,0.5,0.0);
+	kRedTarget = ColorMatch.makeColor(0.5,0.3,0.0);
+	kYellowTarget = ColorMatch.makeColor(0.3,0.4,0.0);
 
     colorMatcher.addColorMatch(kRedTarget);
     colorMatcher.addColorMatch(kGreenTarget);
@@ -66,28 +57,21 @@ public class SpinWheelSub extends SubsystemBase {
 
 
 	public void findColor(Button bDrive ) {
-		//System.out.println(digIn0.get());
-		SmartDashboard.putBoolean("Dig in 0", digIn0.get());
-		
-
 		if (digIn0.get() == false) { // check if in testing
+			SmartDashboard.putBoolean("Testing", true);
 			if (bDrive.get() == true){
-				SmartDashboard.putBoolean("Wheel Drive", true);
 				spinWheelDrive();
 			} else {
 				spinWheelStop();
-				SmartDashboard.putBoolean("Wheel Drive", false);
 			}
 		} else { // defualt to regular mode
-		SmartDashboard.putBoolean("Wheel Drive", false);
-
-		Color detectedColor = colorSensor.getColor();
-
+			SmartDashboard.putBoolean("Testing", false);
+			Color detectedColor = colorSensor.getColor();
 			String colorString;
 			ColorMatchResult match = colorMatcher.matchClosestColor(detectedColor);
 
 
-			if (match.color == kBlueTarget){
+			if (match.color == kBlueTarget){ // change to switch later
 				colorString = "Blue";
 			}
 			else if (match.color == kGreenTarget){
@@ -124,7 +108,6 @@ public class SpinWheelSub extends SubsystemBase {
 				try {
 					TimeUnit.SECONDS.sleep(18);
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				spinWheelStop();	

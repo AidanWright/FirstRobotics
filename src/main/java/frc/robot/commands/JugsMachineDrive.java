@@ -29,8 +29,7 @@ public class JugsMachineDrive extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.jugsMachineSub.JugsMachineDrive(Robot.oi.Xbox.getRawAxis(RobotContainer.jugsMachineReverse),
-    Robot.oi.Xbox.getRawAxis(RobotContainer.jugsMachineForward));
+    Robot.jugsMachineSub.JugsMachineDrive(Robot.oi.Xbox.getRawAxis(RobotContainer.jugsMachineReverse), Robot.oi.Xbox.getRawAxis(RobotContainer.jugsMachineForward));
   }
 
   // Called once the command ends or is interrupted.

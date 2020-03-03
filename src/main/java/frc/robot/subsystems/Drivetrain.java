@@ -42,25 +42,16 @@ SpeedControllerGroup leftMotors, rightMotors;
   }
 
   public void drive(double moveSpeed, double rotateSpeed, double spinSpeed){
-
-  
     if (moveSpeed < -RobotContainer.flightstickDeadZone || // check if past deadzone
       moveSpeed > RobotContainer.flightstickDeadZone ||
       rotateSpeed > RobotContainer.flightstickDeadZone ||
       rotateSpeed < -RobotContainer.flightstickDeadZone) {
-      /*if (moveSpeed < -RobotContainer.flightstickDeadZone * 0.8 ||
-        moveSpeed > RobotContainer.flightstickDeadZone * 0.8 ||
-        rotateSpeed > RobotContainer.flightstickDeadZone * 0.8 ||
-        rotateSpeed < -RobotContainer.flightstickDeadZone * 0.8) {
-          differentialDrive.arcadeDrive(moveSpeed * 0.8, rotateSpeed * 0.8);
-        } else {*/
-           differentialDrive.arcadeDrive(moveSpeed, rotateSpeed);
-        //}
+      differentialDrive.arcadeDrive(moveSpeed, rotateSpeed);
     }
     if (spinSpeed > RobotContainer.flightstickDeadZone ||
-         spinSpeed < -RobotContainer.flightstickDeadZone) {
-          differentialDrive.arcadeDrive(moveSpeed, spinSpeed);
-         }
+      spinSpeed < -RobotContainer.flightstickDeadZone) {
+      differentialDrive.arcadeDrive(moveSpeed, spinSpeed);
+    }
   }
 
 
