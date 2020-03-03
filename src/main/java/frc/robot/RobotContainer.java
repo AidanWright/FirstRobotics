@@ -41,13 +41,13 @@ public class RobotContainer {
   public static final int jugsMachineReverse = Robot.oi.leftTrigger; // Button to load balls into the cannon.
   // Cannon Angle Buttons
   public static final Button TrenchRunButton = Robot.oi.UpButton; // Button to level the robot.
-  public static final Button TwentyFeetButton = Robot.oi.RightButton;
+  public static final Button sevenTyroneFeetButton = Robot.oi.LeftButton;
   public static final Button IntakeAngleButton = Robot.oi.DownButton;
-  public static final Button ThirtyFeetButton = Robot.oi.LeftButton;
+  public static final Button ThirtyTreeButton = Robot.oi.RightButton;
 
   // Solenoid Buttons
-  public static final Button climbButtonExtend = Robot.oi.XButton; // Button to extend the arm.
-  public static final Button climbButtonRetract = Robot.oi.YButton; // Button to retract the arm.
+  public static final Button climbButtonExtend = Robot.oi.D1; // Button to extend the arm.
+  public static final Button climbButtonRetract = Robot.oi.D2; // Button to retract the arm.
   public static final Button rollerButtonExtend = Robot.oi.XButton; // Button to extend the arm.
   public static final Button rollerButtonRetract = Robot.oi.YButton; // Button to retract the arm.
   public static final Button singleSolenoidButtonExtend = Robot.oi.D4; // Button to extend the single solenoid. 
@@ -101,9 +101,9 @@ public class RobotContainer {
   public static final double limitUp = 0.5;
   public static final double limitDown = 2.189941;
 
-  public static final double IntakeAngle = 1.386719; //0.845947
-  public static final double twentyFeetShot = 0.466309;
-  public static final double thirtyFeetShot = 0.267324;
+  public static final double IntakeAngle = 1.375732; //0.845947, 1.386719
+  public static final double sevenTyroneFeetShot = 0.395508; //0.435791
+  public static final double thirtyTreeFeetShot = 0.267324;
   // .466309 17 feet
 
 

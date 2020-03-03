@@ -70,13 +70,13 @@ public class DriveCannon extends CommandBase {
   }
 
        //twentyFeetShot
-       if (RobotContainer.TwentyFeetButton.get() == true){
-        if  (Robot.cannonRotateSub.getVoltage() > RobotContainer.twentyFeetShot){
+       if (RobotContainer.sevenTyroneFeetButton.get() == true){
+        if  (Robot.cannonRotateSub.getVoltage() > RobotContainer.sevenTyroneFeetShot){
           Robot.cannonRotateSub.cannonDriveUp();
-        } else if(Robot.cannonRotateSub.getVoltage() < RobotContainer.twentyFeetShot){
+        } else if(Robot.cannonRotateSub.getVoltage() < RobotContainer.sevenTyroneFeetShot){
             Robot.cannonRotateSub.cannonDriveDown();
-        } else if ((RobotContainer.twentyFeetShot < Robot.cannonRotateSub.getVoltage())
-          && (Robot.cannonRotateSub.getVoltage() < RobotContainer.twentyFeetShot)){
+        } else if ((RobotContainer.sevenTyroneFeetShot < Robot.cannonRotateSub.getVoltage())
+          && (Robot.cannonRotateSub.getVoltage() < RobotContainer.sevenTyroneFeetShot)){
           Robot.cannonRotateSub.cannonStop();
         } else {
             Robot.cannonRotateSub.cannonStop();
@@ -84,13 +84,13 @@ public class DriveCannon extends CommandBase {
       }
 
         //thirtyFeetShot
-        if (RobotContainer.ThirtyFeetButton.get() == true){
-          if  (Robot.cannonRotateSub.getVoltage() > RobotContainer.thirtyFeetShot){
+        if (RobotContainer.ThirtyTreeButton.get() == true){
+          if  (Robot.cannonRotateSub.getVoltage() > RobotContainer.thirtyTreeFeetShot){
             Robot.cannonRotateSub.cannonDriveUp();
-          } else if(Robot.cannonRotateSub.getVoltage() < RobotContainer.thirtyFeetShot){
+          } else if(Robot.cannonRotateSub.getVoltage() < RobotContainer.thirtyTreeFeetShot){
               Robot.cannonRotateSub.cannonDriveDown();
-          } else if ((RobotContainer.thirtyFeetShot < Robot.cannonRotateSub.getVoltage())
-            && (Robot.cannonRotateSub.getVoltage() < RobotContainer.thirtyFeetShot)){
+          } else if ((RobotContainer.thirtyTreeFeetShot < Robot.cannonRotateSub.getVoltage())
+            && (Robot.cannonRotateSub.getVoltage() < RobotContainer.thirtyTreeFeetShot)){
             Robot.cannonRotateSub.cannonStop();
           } else {
               Robot.cannonRotateSub.cannonStop();
