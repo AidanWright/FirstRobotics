@@ -57,7 +57,19 @@ public class FanSubsystem extends SubsystemBase {
   public void fanDriveStop() {
 		// Values to stop the fan
 		fanDrive.tankDrive(0, 0);
-	}
+  }
+  
+    /**
+   * Drives the robot using arcade controls.
+   *
+   * @param fwd the commanded forward movement
+   * @param rot the commanded rotation
+   */
+  public void autoDrive(double fwd, double rot) {
+		fanDrive.tankDrive(fwd, rot);
+  }
+
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run

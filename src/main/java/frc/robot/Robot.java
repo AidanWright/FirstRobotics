@@ -8,13 +8,12 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.DriverStation;
 // Import our needed classes
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-//import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.commands.auto.AutoBlueCenter;
 import frc.robot.subsystems.CannonRotateSub;
 import frc.robot.subsystems.ColorSolenoidSub;
 import frc.robot.subsystems.DoubleSolenoidSub;
@@ -34,13 +33,7 @@ import org.opencv.imgproc.Imgproc;
 import edu.wpi.cscore.CvSink;
 import edu.wpi.cscore.CvSource;
 
-// import org.opencv.core.Mat;
-// import org.opencv.core.Point;
-// import org.opencv.core.Scalar;
-// import org.opencv.imgproc.Imgproc;
 
-// import edu.wpi.cscore.CvSink;
-// import edu.wpi.cscore.CvSource;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.cscore.VideoMode.PixelFormat;
 import edu.wpi.first.cameraserver.CameraServer;
@@ -77,6 +70,14 @@ public class Robot extends TimedRobot {
   public static boolean button8;
   public static boolean button7;
   public static boolean button6;
+  public static DigitalInput digIn4;
+  public static DigitalInput digIn3;
+  public static DigitalInput digIn2;
+  public static DigitalInput digIn1;
+  public static boolean button4;
+  public static boolean button3;
+  public static boolean button2;
+  public static boolean button1;
   public static int station;
   public static double ballX;
   public static double ballY;
@@ -113,10 +114,17 @@ public class Robot extends TimedRobot {
     digIn8 = new DigitalInput(8);
     digIn7 = new DigitalInput(7);
     digIn6 = new DigitalInput(6);
+    digIn4 = new DigitalInput(4);
+    digIn3 = new DigitalInput(3);
+    digIn2 = new DigitalInput(2);
+    digIn1 = new DigitalInput(1);
 
     m_visionThread = new Thread(() -> {
       // Get the UsbCamera from CameraServer
-      UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
+      
+      //UsbCamera camera1 = new UsbCamera("USB Cam Cannon", 1).startAutomaticCapture();
+      UsbCamera camera1 = CameraServer.getInstance().startAutomaticCapture(0);
+      UsbCamera camera = CameraServer.getInstance().startAutomaticCapture(1);
       camera.setVideoMode(PixelFormat.kMJPEG, 160, 120, 30);
       new Thread(() -> {
         cvSink = CameraServer.getInstance().getVideo();
@@ -176,7 +184,11 @@ public class Robot extends TimedRobot {
     button9 = !digIn9.get();
 		button8 = !digIn8.get();
 		button7 = !digIn7.get();
-		button6 = !digIn6.get();
+    button6 = !digIn6.get();
+    button4 = !digIn4.get();
+    button3 = !digIn3.get();
+    button2 = !digIn2.get();
+    button1 = !digIn1.get();
   }
 
   /**
@@ -184,56 +196,13 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
-    //m_autonomousCommand = m_robotContainer.getAutonomousCommand();
+    SmartDashboard.putBoolean("Auto", false);
+    m_autonomousCommand = new AutoBlueCenter(drivetrain, jugsMachineSub, fanSubsystem, cannonRotateSub, doubleSolenoidSub);
+    
     // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
     }
-    String gameData = DriverStation.getInstance().getGameSpecificMessage();
-		if ((button9 == true) && (button8 == false))
-			station = 1;
-		else if ((button9 == false) && (button8 == true))
-			station = 3;
-		else if ((button9 == true) && (button8 == true))
-			station = 2;
-		
-		if (station == 1) {
-			if ((button7 == true) && (gameData.charAt(0) == 'L')) {
-				System.out.println("Switch1L");
-			}
-			else if ((gameData.charAt(1) == 'L') && (button6 == true)) {
-				System.out.println("Scale1L");
-			}
-			else if (gameData.charAt(0) == 'L') {
-				System.out.println("Switch1L2");
-			}
-			else {
-				System.out.println("autoRun1");
-			}
-		}
-		else if (station == 3) {
-			if ((button7 == true) && (gameData.charAt(0) == 'R')) {
-				System.out.println("Switch3R");
-			}
-			else if ((gameData.charAt(1) == 'R') && (button6 == true)) {
-				System.out.println("Scale3R2");
-			}
-			else if (gameData.charAt(0) == 'R') {
-				System.out.println("Switch3R2");
-			}
-			else {
-				System.out.println("AutoRun3");
-			}
-		}
-		else if (station == 2) {
-			if (gameData.charAt(0) == 'R') {
-				System.out.println("AutoRun2R switch score");
-			}
-			else {
-				System.out.println("AutoRun2L");
-			}		
-		}
-
   }
 
   /**
@@ -241,7 +210,10 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousPeriodic() {
-
+    button4 = !digIn4.get();
+    button3 = !digIn3.get();
+    button2 = !digIn2.get();
+    button1 = !digIn1.get();
   }
 
   @Override
@@ -261,6 +233,10 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
+    //SmartDashboard.putNumber("Gyro angle", OI.imu.getAngle());
+
+    button9 = !digIn9.get();
+
     Block largest = PixyVision.getBiggestBlock();
     if (!(largest == null)) {
       SmartDashboard.putNumber("Largest X", largest.getX());

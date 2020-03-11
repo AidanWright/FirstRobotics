@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.commands.DoubleSolenoidDrive;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 public class DoubleSolenoidSub extends SubsystemBase {
@@ -19,10 +20,12 @@ public class DoubleSolenoidSub extends SubsystemBase {
   static Value valRoller = DoubleSolenoid.Value.kOff;
 
   public void extendRoller() {
+    SmartDashboard.putString("Roller", "Extended");
     pitchSolenoid2.set(DoubleSolenoid.Value.kForward);
     valRoller = DoubleSolenoid.Value.kForward;
   }
   public void retractRoller() {
+    SmartDashboard.putString("Roller", "Retracted");
     pitchSolenoid2.set(DoubleSolenoid.Value.kReverse);
     valRoller = DoubleSolenoid.Value.kReverse;
   }
@@ -31,6 +34,7 @@ public class DoubleSolenoidSub extends SubsystemBase {
       System.out.println("Roller " + valRoller);
   }
   public void off() {
+      SmartDashboard.putString("Roller", "Off");
       pitchSolenoid2.set(DoubleSolenoid.Value.kOff);
   }
 

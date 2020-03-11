@@ -10,8 +10,13 @@ package frc.robot.commands;
 // Import our needed classes
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
+import frc.robot.commands.auto.DriveTime;
 
 public class WheelDrive extends CommandBase {
+
+  Boolean lock = false;
+  DriveTime cruiseControll;
+
   /**
    * Creates a new WheelDrive.
    * 
@@ -29,8 +34,22 @@ public class WheelDrive extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.drivetrain.drive(-Robot.oi.driverController.getY(), Robot.oi.driverController.getX(), Robot.oi.driverController.getZ());
+    //if (cruiseControll.isFinished() == true) { // unlock controlls
+    //  lock = false;
+    //}
+    //if (lock != true) {
+      // arcade drive
+      Robot.drivetrain.drive(-Robot.oi.driverController.getY(), Robot.oi.driverController.getX(), Robot.oi.driverController.getZ());
+      
+      // cruise controll
+      /*if (RobotContainer.cruiseControllButton.get() == true) {
+        lock = true;
+        cruiseControll = new DriveTime(3, -Robot.oi.driverController.getY(), Robot.drivetrain);
+        cruiseControll.schedule();
+      }
+    }*/
   }
+
   
   // Called once the command ends or is interrupted.
   @Override
