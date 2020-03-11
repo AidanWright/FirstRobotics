@@ -41,9 +41,12 @@ public class RobotContainer {
   public static final int jugsMachineReverse = Robot.oi.leftTrigger; // Button to load balls into the cannon.
   // Cannon Angle Buttons
   public static final Button TrenchRunButton = Robot.oi.UpButton; // Button to level the robot.
-  public static final Button sevenTyroneFeetButton = Robot.oi.LeftButton;
+  public static final Button closeShotButton = Robot.oi.RightButton;
   public static final Button IntakeAngleButton = Robot.oi.DownButton;
-  public static final Button ThirtyTreeButton = Robot.oi.RightButton;
+  public static final Button ThirtyTreeButton = Robot.oi.LeftButton;
+  public static final Button LoadingIntake = Robot.oi.rightPress;
+  public static final Button sevenTyroneFeetButton = Robot.oi.LeftButton;
+
 
   // Solenoid Buttons
   public static final Button climbButtonExtend = Robot.oi.D1; // Button to extend the arm.
@@ -55,7 +58,8 @@ public class RobotContainer {
   public static final Button colorSolenoidButtonExtend = Robot.oi.AButton; // Button to extend the color wheel solenoid.
   public static final Button colorSolenoidButtonRetract = Robot.oi.BButton; // Button to retact the color wheel solenoid.
   public static final Button spin4 = Robot.oi.D5;
-  // Color Wheel Button
+  public static final Button cruiseControllButton = Robot.oi.D1;
+   // Color Wheel Button
   public static final Button  colorWheelDrive = Robot.oi.D6; // Button to drive the color wheel.
 
   /* Port Configs */
@@ -97,14 +101,16 @@ public class RobotContainer {
   // Saftey
   public static final int patSupidSaftey = Robot.oi.slider; // Saftey for solenoids.
   // Cannon Positions
-  public static final double Level = 1.856689263;  
-  public static final double limitUp = 0; // 0.5
-  public static final double limitDown = 2.189941;
+  public static final double Level = 1.856689263; // 1.436767
+  public static final double limitUp = Level - 1.136767; // 0.3
+  public static final double limitDown = Level + 0.753174; // 2.189941
 
-  public static final double IntakeAngle = 1.375732; //0.845947, 1.386719
-  public static final double sevenTyroneFeetShot = 0.395508; //0.435791
-  public static final double thirtyTreeFeetShot = 0.267324;
-  // .466309 17 feet
+  public static final double IntakeAngle = Level + 0.52002; // 1.956787
+  public static final double sevenTyroneFeetShot = Level - 0.477767; // 0.959
+  public static final double thirtyTreeFeetShot = 0.496826121; // 0.496826121
+  public static final double tenFootShot = Level - 0.581167; // 0.9326
+  public static final double closeShot = Level - 0.899617; // 0.58715
+  public static final double loadingAngle = Level - 0.181884; // 1.254883
 
 
   /**

@@ -26,6 +26,7 @@ public class Drivetrain extends SubsystemBase {
 DifferentialDrive differentialDrive;
 SpeedController leftFrontPWMVictorSPX, rightFrontPWMVictorSPX, leftBackPWMVictorSPX, rightBackPWMVictorSPX;
 SpeedControllerGroup leftMotors, rightMotors;
+Boolean locked;
 
   public Drivetrain() {
     // Creates new PWM Speed controllers
@@ -42,18 +43,28 @@ SpeedControllerGroup leftMotors, rightMotors;
   }
 
   public void drive(double moveSpeed, double rotateSpeed, double spinSpeed){
-    if (moveSpeed < -RobotContainer.flightstickDeadZone || // check if past deadzone
-      moveSpeed > RobotContainer.flightstickDeadZone ||
-      rotateSpeed > RobotContainer.flightstickDeadZone ||
-      rotateSpeed < -RobotContainer.flightstickDeadZone) {
-      differentialDrive.arcadeDrive(moveSpeed, rotateSpeed);
-    }
-    if (spinSpeed > RobotContainer.flightstickDeadZone ||
-      spinSpeed < -RobotContainer.flightstickDeadZone) {
-      differentialDrive.arcadeDrive(moveSpeed, spinSpeed);
-    }
+      if (moveSpeed < -RobotContainer.flightstickDeadZone || // check if past deadzone
+        moveSpeed > RobotContainer.flightstickDeadZone ||
+        rotateSpeed > RobotContainer.flightstickDeadZone ||
+        rotateSpeed < -RobotContainer.flightstickDeadZone) {
+        differentialDrive.arcadeDrive(moveSpeed, rotateSpeed);
+      }
+      if (spinSpeed > RobotContainer.flightstickDeadZone ||
+        spinSpeed < -RobotContainer.flightstickDeadZone) {
+        differentialDrive.arcadeDrive(moveSpeed, spinSpeed);
+      }
   }
 
+  /**
+   * Drives the robot using arcade controls.
+   *
+   * @param fwd the commanded forward movement
+   * @param rot the commanded rotation
+   */
+  public void autoDrive(double fwd, double rot) {
+    //SmartDashboard.putNumber("Auto Fwrd", fwd);
+    differentialDrive.arcadeDrive(fwd, rot);
+  }
 
   @Override
   public void periodic() {

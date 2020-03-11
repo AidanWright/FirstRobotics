@@ -30,11 +30,14 @@ public class DriveCannon extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (Robot.cannonRotateSub.getVoltage() < RobotContainer.limitUp) {
-      if(Robot.oi.Xbox.getRawAxis(1) > 0) {
-        Robot.cannonRotateSub.cannonDrive(-1 * Robot.oi.Xbox.getY());
-      } 
-    } else if (Robot.cannonRotateSub.getVoltage() > RobotContainer.limitDown) {
+    if (Robot.button9 == true) {
+      if (Robot.cannonRotateSub.getVoltage() < RobotContainer.limitUp) {
+        if(Robot.oi.Xbox.getRawAxis(1) > 0) {
+          Robot.cannonRotateSub.cannonDrive(-1 * Robot.oi.Xbox.getY());
+        } 
+      }
+    }
+    if (Robot.cannonRotateSub.getVoltage() > RobotContainer.limitDown) {
       if(Robot.oi.Xbox.getRawAxis(1) < 0) {
         Robot.cannonRotateSub.cannonDrive(-1 * Robot.oi.Xbox.getY());
       }
@@ -68,7 +71,7 @@ public class DriveCannon extends CommandBase {
         Robot.cannonRotateSub.cannonStop();
     }
   }
-
+  
       //twentyFeetShot
       if (RobotContainer.sevenTyroneFeetButton.get() == true){
       if  (Robot.cannonRotateSub.getVoltage() > RobotContainer.sevenTyroneFeetShot){
@@ -82,7 +85,7 @@ public class DriveCannon extends CommandBase {
           Robot.cannonRotateSub.cannonStop();
       }
     }
-
+/*
     //thirtyFeetShot
     if (RobotContainer.ThirtyTreeButton.get() == true){
       if  (Robot.cannonRotateSub.getVoltage() > RobotContainer.thirtyTreeFeetShot){
@@ -95,7 +98,34 @@ public class DriveCannon extends CommandBase {
       } else {
           Robot.cannonRotateSub.cannonStop();
       }
-    }     
+    }    */ 
+
+    if (RobotContainer.closeShotButton.get() == true){
+      if  (Robot.cannonRotateSub.getVoltage() > RobotContainer.closeShot){
+        Robot.cannonRotateSub.cannonDriveUp();
+      } else if(Robot.cannonRotateSub.getVoltage() < RobotContainer.closeShot){
+          Robot.cannonRotateSub.cannonDriveDown();
+      } else if ((RobotContainer.closeShot < Robot.cannonRotateSub.getVoltage())
+        && (Robot.cannonRotateSub.getVoltage() < RobotContainer.closeShot)){
+        Robot.cannonRotateSub.cannonStop();
+      } else {
+          Robot.cannonRotateSub.cannonStop();
+      }
+    }
+
+        //loading Angle
+        if (RobotContainer.LoadingIntake.get() == true){
+          if  (Robot.cannonRotateSub.getVoltage() > RobotContainer.loadingAngle){
+            Robot.cannonRotateSub.cannonDriveUp();
+          } else if(Robot.cannonRotateSub.getVoltage() < RobotContainer.loadingAngle){
+              Robot.cannonRotateSub.cannonDriveDown();
+          } else if ((RobotContainer.loadingAngle < Robot.cannonRotateSub.getVoltage())
+            && (Robot.cannonRotateSub.getVoltage() < RobotContainer.loadingAngle)){
+            Robot.cannonRotateSub.cannonStop();
+          } else {
+              Robot.cannonRotateSub.cannonStop();
+          }
+        }
 
     SmartDashboard.putNumber("Pot Value", Robot.cannonRotateSub.getVoltage());
   }
