@@ -133,7 +133,7 @@ public class Robot extends TimedRobot {
           }
           SmartDashboard.putNumber("Ball x", ballX);
           SmartDashboard.putNumber("Ball y", ballY);
-          Imgproc.putText(source, "Ball", new Point(ballX - 165, ballY - 20), 2, 0.5, new Scalar(255, 255, 255));
+          if (ballX != 42069 && ballY != 42069) Imgproc.putText(source, "Ball", new Point(ballX - 100, ballY - 25), 2, 0.5, new Scalar(255, 255, 255));
           Imgproc.rectangle(source, new Point(5, 5), new Point(155, 115),
             new Scalar(255, 255, 255), 2);
           outputStream.putFrame(source);
@@ -266,7 +266,9 @@ public class Robot extends TimedRobot {
       SmartDashboard.putNumber("Largest X", largest.getX());
       ballX = (double) largest.getX();
       ballY = (double) largest.getY();
-      //ball.y = ;
+      } else {
+        ballX = 42069;
+        ballY = 42069;
       }
     }
 

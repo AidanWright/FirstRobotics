@@ -61,10 +61,10 @@ public class RobotContainer {
   /* Port Configs */
   /* PWM */
   // Wheel Ports
-  public static final int DRIVETRAIN_LEFT_FRONT_PWMVictorSPX = 0;
-  public static final int DRIVETRAIN_RIGHT_FRONT_PWMVictorSPX = 1;
-  public static final int DRIVETRAIN_LEFT_BACK_PWMVictorSPX = 2;
-  public static final int DRIVETRAIN_RIGHT_BACK_PWMVictorSPX = 3;
+  public static final int DRIVETRAIN_LEFT_FRONT_PWMVictorSPX = 1;
+  public static final int DRIVETRAIN_RIGHT_FRONT_PWMVictorSPX = 0;
+  public static final int DRIVETRAIN_LEFT_BACK_PWMVictorSPX = 3;
+  public static final int DRIVETRAIN_RIGHT_BACK_PWMVictorSPX = 2;
   // Motor Ports
   public static final int rollerPWM = 4;
   public static final int jugsPWM = 5;
@@ -97,8 +97,8 @@ public class RobotContainer {
   // Saftey
   public static final int patSupidSaftey = Robot.oi.slider; // Saftey for solenoids.
   // Cannon Positions
-  public static final double Level = 0.926514;  
-  public static final double limitUp = 0.5;
+  public static final double Level = 1.856689263;  
+  public static final double limitUp = 0; // 0.5
   public static final double limitDown = 2.189941;
 
   public static final double IntakeAngle = 1.375732; //0.845947, 1.386719
