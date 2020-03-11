@@ -24,6 +24,7 @@ public class JugsMachineSub extends SubsystemBase{
 
 
 	public void JugsMachineDrive(double jugsmachinereverse, double jugsmachineforward) {
+		//jugsMachineDrive.set(1);
 		// Calls the triggers and uses values to drive motors if their input is greater
 		// than or equal to the value found in RobotContainer
 		if (jugsmachineforward > RobotContainer.triggerDeadzone) {
@@ -42,7 +43,9 @@ public class JugsMachineSub extends SubsystemBase{
 		jugsMachineMotor.tankDrive(RobotContainer.jugsMachineSpeed * -0.75, RobotContainer.jugsMachineSpeed * 0.75);
 	}
 
-
+	public void autoDrive(double fwd, double rot) {
+		jugsMachineMotor.tankDrive(fwd, rot);
+	}
 
 	public void jugsMachineStop() {
 		//values to stop the rollerIntake

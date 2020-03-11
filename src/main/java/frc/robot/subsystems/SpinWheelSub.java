@@ -26,7 +26,7 @@ import java.util.concurrent.TimeUnit;
 
 public class SpinWheelSub extends SubsystemBase {
 
-	Color kBlueTarget, kRedTarget, kYellowTarget, kGreenTarget;
+	public Color kBlueTarget, kRedTarget, kYellowTarget, kGreenTarget;
 	TalonSRX spinWheelDrive,dummyDrive;
 	DifferentialDrive spinWheelMotor;
 	ColorSensorV3 colorSensor;
@@ -34,6 +34,7 @@ public class SpinWheelSub extends SubsystemBase {
 	I2C.Port i2cPort;
 	DigitalInput digIn0;
 	Boolean running = false;
+	Color target;
 
 	public SpinWheelSub() {
 
@@ -56,7 +57,7 @@ public class SpinWheelSub extends SubsystemBase {
   }
 
 
-	public void findColor(Button bDrive ) {
+	public void findColor(Button bDrive, String gameData) {
 		if (digIn0.get() == false) { // check if in testing
 			SmartDashboard.putBoolean("Testing", true);
 			if (bDrive.get() == true){
@@ -94,9 +95,33 @@ public class SpinWheelSub extends SubsystemBase {
 		SmartDashboard.putNumber("Confidence",match.confidence);
 		SmartDashboard.putString("Detected Color", colorString);
 
-			if (match.color != kRedTarget && bDrive.get() == true){
+		if(gameData.length() > 0) {
+			switch (gameData.charAt(0)) {
+				case 'B' :
+				//Blue case code
+				target = kBlueTarget;
+				break;
+				case 'G' :
+				//Green case code
+				target = kGreenTarget;
+				break;
+				case 'R' :
+				//Red case code4
+				target = kRedTarget;
+				break;
+				case 'Y' :
+				//Yellow case code
+				target = kYellowTarget;
+				break;
+				default :
+				//This is corrupt data
+				target = kRedTarget;
+				break;
+			}
+		}
+			if (match.color != target && bDrive.get() == true){
 			spinWheelDrive();
-			} else if (match.color == kRedTarget) {
+			} else if (match.color == target) {
 			spinWheelStop();
 			} else if (!(bDrive.get() == true)) {
 			spinWheelStop();

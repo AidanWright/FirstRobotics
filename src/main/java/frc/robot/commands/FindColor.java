@@ -7,6 +7,7 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.DriverStation;
 // Import our needed classes
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
@@ -27,7 +28,7 @@ public class FindColor extends CommandBase {
 
   // Called every time the scheduler runs while the command is scheduled.
   public void execute() {
-    Robot.findColorSub.findColor(RobotContainer.colorWheelDrive);
+    Robot.findColorSub.findColor(RobotContainer.colorWheelDrive, DriverStation.getInstance().getGameSpecificMessage());
   }
 
   // Called once the command ends or is interrupted.

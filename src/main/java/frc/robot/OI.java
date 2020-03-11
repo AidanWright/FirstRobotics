@@ -7,8 +7,11 @@
 
 package frc.robot;
 
+import com.analog.adis16448.frc.ADIS16448_IMU;
+
 // Import our needed classes
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj.XboxController;
@@ -18,6 +21,11 @@ import edu.wpi.first.wpilibj2.command.button.POVButton;
 * This class creates and maps the controllers.
  */
 public class OI {
+
+    // 
+    //public static final ADIS16448_IMU imu = new ADIS16448_IMU();
+
+
     // Joysticks
     public Joystick driverController = new Joystick(RobotContainer.OI_DRIVER_CONTROLLER);
     public Joystick Xbox = new Joystick(RobotContainer.OI_XBOX_CONTROLLER);
@@ -50,6 +58,10 @@ public class OI {
     public final int slider = 3; // Slider on flightstick. 
                                  // NOTE: neg is labeled as positive and vice-versa.
 
+    public Command getAutonomousCommand() {
+        return null; // fix
+    }
+                                
     
 }
 
